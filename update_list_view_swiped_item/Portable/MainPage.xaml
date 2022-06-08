@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:telerikListView="clr-namespace:Telerik.XamarinForms.DataControls.ListView;assembly=Telerik.XamarinForms.DataControls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:tk="clr-namespace:Telerik.XamarinForms.DataControls;assembly=Telerik.XamarinForms.DataControls"
+             x:Class="update_list_view_swiped_item.Portable.MainPage">
+
+    <Grid>
+        <tk:RadListView x:Name="listView"
+                        ItemsSource="{Binding Source}"
+                        SwipeOffset="50,0"
+                        SwipeThreshold="10"
+                        IsItemSwipeEnabled="True" >
+            <tk:RadListView.ItemTemplate>
+                <DataTemplate>
+                    <telerikListView:ListViewTemplateCell>
+                        <telerikListView:ListViewTemplateCell.View>
+                            <Frame BackgroundColor="{Binding BackgroundColor}"
+                                   BorderColor="Black"
+                                   CornerRadius="10.0">
+                            <Grid>
+                                <Label Text="{Binding Title}"
+                                       HeightRequest="50"
+                                       Padding="4,0,0,0"
+                                       FontSize="Medium"
+                                       VerticalOptions="CenterAndExpand"
+                                       VerticalTextAlignment="Center" />
+                            </Grid>
+                            </Frame>
+                        </telerikListView:ListViewTemplateCell.View>
+                    </telerikListView:ListViewTemplateCell>
+                </DataTemplate>
+            </tk:RadListView.ItemTemplate>
+            <tk:RadListView.ItemSwipeContentTemplate>
+                <DataTemplate>
+                    <Grid ColumnSpacing="0"
+                          RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Text="$"
+                                Command="{Binding ClickCommand}"
+                                CommandParameter="{Binding}"
+                                BackgroundColor="{Binding BackgroundColor}"/>
+                    </Grid>
+                </DataTemplate>
+            </tk:RadListView.ItemSwipeContentTemplate>
+        </tk:RadListView>
+    </Grid>
+
+</ContentPage>
